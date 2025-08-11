@@ -1,0 +1,32 @@
+[project]
+name = "finance-agent-new"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pandas>=2.0",
+    "numpy>=1.25",
+    "yfinance>=0.2",
+    "agno>=0.1.0",
+    # Removed NautilusTrader for now
+    "ta>=0.11.0",
+    "httpx>=0.27",
+    "packaging>=24.0",
+    "googlesearch-python>=1.3.0",
+    "pycountry>=24.6.1",
+    "openai>=1.99.6",
+    "vnstock>=0.1.0",
+    "pydantic-settings>=2.10.1",
+    "anthropic>=0.62.0",
+    "groq>=0.31.0",
+    "Backtesting>=0.3.3",
+    "tabulate>=0.9.0",
+]
+
+[tool.uv]
+dev-dependencies = []
+
+[tool.uv.sources]
+# no special sources required
+
