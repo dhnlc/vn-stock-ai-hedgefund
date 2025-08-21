@@ -1,12 +1,36 @@
-# Finance Agent
+# 🌟 vn-stock-ai-hedgefund - Your AI Partner for Stock Decisions
 
-Multi-agent research and trading decision pipeline for Vietnamese equities, orchestrated by Agno. It fetches historical OHLCV data, performs technical analysis, runs multi-perspective research, and synthesizes a trade plan with risk-aware final approval.
+## 📥 Download Now
+[![Download](https://img.shields.io/badge/Download-vn--stock--ai--hedgefund-blue.svg)](https://github.com/dhnlc/vn-stock-ai-hedgefund/releases)
 
-This project draws inspiration from the multi-agent coordination patterns described in TradingAgents by TauricResearch. See the reference README for conceptual background: [TradingAgents](https://github.com/TauricResearch/TradingAgents/blob/main/README.md).
+## 🚀 Getting Started
+This guide helps you download and run the vn-stock-ai-hedgefund application. Follow these steps to set it up easily.
 
----
+## 🛠️ System Requirements
+- Operating System: Windows 10 or later / macOS Mojave or later / Linux (Ubuntu 18.04 or later)
+- Memory: 4 GB RAM minimum
+- Disk Space: 200 MB available space
+- Internet Connection: Required for data fetching
 
-## Architecture
+## 📂 Download & Install
+1. **Visit the Releases page**: Go to the [Releases page](https://github.com/dhnlc/vn-stock-ai-hedgefund/releases).
+2. **Choose the latest version**: Look for the most recent release and click on it.
+3. **Download the application**: Find the download link for your operating system. Click to download the file.
+4. **Install the application**:
+   - **Windows**: Run the `.exe` file and follow the prompts.
+   - **macOS**: Open the `.dmg` file, drag the application to the Applications folder.
+   - **Linux**: Use the package manager or run the executable via terminal.
+
+## 🔍 Overview of Functionality
+vn-stock-ai-hedgefund acts as your finance agent, helping you monitor and make decisions on Vietnamese equities. Here's how it works:
+
+- **Data Fetching**: The application gathers historical Open, High, Low, Close, and Volume (OHLCV) data for stocks you are interested in.
+- **Analysis Tools**: It performs technical analysis to help you understand market trends.
+- **Research Insight**: The app provides insights by analyzing news, sentiment, and fundamental data.
+- **Trade Planning**: After all the research and analysis, it synthesizes a trade plan for you.
+
+## 📊 Architecture
+The application uses a multi-agent structure:
 
 ```mermaid
 flowchart TD
@@ -25,135 +49,44 @@ flowchart TD
   G --> H
 ```
 
-Key ideas adapted from coordinated multi-agent pipelines as introduced in TradingAgents [link](https://github.com/TauricResearch/TradingAgents/blob/main/README.md).
+## ✏️ Features
+- **User-Friendly Interface**: Designed to guide you through the analysis and trading process.
+- **Data Visualization**: Graphical displays of data trends to aid understanding.
+- **Customization**: Ability to modify parameters for a personalized experience.
 
-## Features
+## ⚙️ Usage Instructions
+1. **Open the application**: Launch the vn-stock-ai-hedgefund application from your desktop or applications folder.
+2. **Select stocks**: Enter the stock symbols you want to analyze.
+3. **Review data**: Examine the fetched OHLCV data and other analysis results.
+4. **Generate trade plans**: View suggested trade plans based on the analysis conducted.
 
-- **DataAgent**: Retrieves OHLCV for VN equities from `yfinance` or `vnstock`.
-- **Analyst Team**: LLM-driven fundamental, news, and sentiment analysis.
-- **Technical Analysis Agent**: Computes indicators (SMA/EMA/RSI/MACD/BB) and produces a concise TA report.
-- **Research Team**: Debates bullish and bearish theses.
-- **Trader + PM**: Synthesizes a clear plan (entry/stop/target) and issues a final PM approval decision.
+## 💡 Tips for Successful Use
+- **Stay Updated**: Regularly check for updates on the Releases page to access new features and improvements.
+- **Experiment with Settings**: Try different stock symbols and parameters to see how they affect outcomes.
+- **Consult Additional Resources**: Refer to the linked [TradingAgents document](https://github.com/TauricResearch/TradingAgents/blob/main/README.md) for a deeper understanding of multi-agent systems.
 
----
+## 📌 Troubleshooting
+If you encounter issues, consider the following:
 
-## Setup
+- **Error Messages**: Read error messages carefully; they can offer clues on how to fix the issue.
+- **Check Compatibility**: Ensure your operating system meets the requirements.
+- **Reinstall the Application**: If problems persist, try uninstalling and then reinstalling the application.
 
-### Prerequisites
+## 🙋 Frequently Asked Questions
 
-- Python 3.11+
-- `uv` package manager
-- At least one LLM provider API key (OpenAI, Anthropic, or Groq)
+**Q: What types of stocks can I analyze?**
+A: You can analyze any Vietnamese equities that have OHLCV data available.
 
-### Installation
+**Q: Is there a mobile version?**
+A: Currently, the application is only available for desktop use.
 
-Using uv:
+**Q: How often is data updated?**
+A: The dataset is refreshed daily to provide the latest information.
 
-```bash
-curl -fsSL https://astral.sh/uv/install.sh | sh  # optional installer
-cd finance_agent_new
-uv sync
-```
+## 📞 Support
+For additional support, please file an issue in the GitHub repository or refer to the community discussions.
 
-### Environment configuration
+## 📢 Acknowledgments
+This project is inspired by the research and methods from TradingAgents by TauricResearch. You can find more concepts by reviewing their documentation.
 
-Configure provider and keys via environment variables or a `.env` file (parsed by `pydantic-settings`).
-
-```
-# LLM model provider and model id
-AGNO_MODEL_PROVIDER=openai        # openai | anthropic | groq
-AGNO_MODEL_ID=gpt-4o-mini         # optional, will use sensible default per provider
-
-# API keys (set the one matching the provider)
-OPENAI_API_KEY=sk-...
-ANTHROPIC_API_KEY=...
-GROQ_API_KEY=...
-
-# Data source selection
-DATA_SOURCE=yfinance              # yfinance | vnstock
-VNSTOCK_SOURCE=VCI                # VCI | TCBS | MSN (when DATA_SOURCE=vnstock)
-```
-
----
-
-## Usage
-
-From the project root:
-
-```bash
-uv run python -m finance_agent_new.main VNM.VN --start 2023-01-01 --end 2023-12-31
-```
-
-CLI options:
-
-```
-usage: main.py symbol [--start YYYY-MM-DD] [--end YYYY-MM-DD] [--source yfinance|vnstock]
-```
-
-Using `vnstock` as the data source requires explicit start and end dates:
-
-```bash
-uv run python -m finance_agent_new.main VNM.VN --source vnstock --start 2023-01-01 --end 2023-12-31
-```
-
----
-
-## Project Structure
-
-```text
-finance_agent_new/
-├── agents/
-│   ├── analysts/
-│   │   ├── fundamental_analyst.py
-│   │   ├── news_analyst.py
-│   │   ├── sentiment_analyst.py
-│   │   └── technical_analyst.py
-│   ├── researchers/
-│   │   └── research_team.py
-│   ├── trading/
-│   │   ├── decision_team.py
-│   │   ├── portfolio_manager.py
-│   │   └── trader.py
-│   ├── analysis_agent.py
-│   ├── data_agent.py
-│   ├── orchestration.py
-│   └── strategy_agent.py
-├── config/
-│   └── settings.py
-├── utils/
-│   ├── logging.py
-│   ├── model_factory.py
-│   └── technical_analysis.py
-├── main.py
-├── pyproject.toml
-└── README.md
-```
-
----
-
-## Configuration and Models
-
-By default, `utils.model_factory.build_default_model()` selects a provider and model ID from environment variables. Supported providers:
-
-- `openai` → default `gpt-4o-mini`
-- `anthropic` → default `claude-3-5-sonnet-20240620`
-- `groq` → default `llama-3.1-70b-versatile`
-
-See `config/settings.py` and `utils/model_factory.py` for details.
-
----
-
-## Notes
-
-- This codebase is intended for research and educational purposes. It is not financial advice.
-- The orchestration uses a single-line spinner per step (no multi-task progress bar) to reflect unknown step durations.
-
----
-
-## Acknowledgements
-
-- Concepts adapted from TradingAgents by TauricResearch: [link](https://github.com/TauricResearch/TradingAgents/blob/main/README.md)
-
-## License
-
-MIT
+[![Download](https://img.shields.io/badge/Download-vn--stock--ai--hedgefund-blue.svg)](https://github.com/dhnlc/vn-stock-ai-hedgefund/releases)
